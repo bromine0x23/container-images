@@ -30,7 +30,7 @@ on:
       image-build-platforms:
         required: false
         type: string
-        default: linux/amd64,linux/arm64
+        default: linux/amd64
       image-name:
         required: true
         type: string
@@ -98,7 +98,7 @@ jobs:
           org.opencontainers.image.revision="${{ github.sha }}"
           org.opencontainers.image.url="${{ github.server_url }}/${{ github.repository }}"
           org.opencontainers.image.source="${{ github.server_url }}/${{ github.repository }}"
-          org.opencontainers.image.licenses="${{ github.server_url }}/${{ github.repository }}"
+          org.opencontainers.image.licenses="${{ inputs.image-label-licenses }}"
         platforms: ${{ inputs.image-build-platforms }}
         push: true
         tags: ${{ env.IMAGE_TAGS }}
