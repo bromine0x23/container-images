@@ -50,8 +50,8 @@ jobs:
       run: |
         {
           echo 'IMAGE_TAGS<<EOF'
-          for REGISTRY in ${{ inputs.image-registries }}; do
-            for TAG in ${{ inputs.image-tags }}; do
+          for REGISTRY in "${{ inputs.image-registries }}"; do
+            for TAG in "${{ inputs.image-tags }}"; do
               echo "${REGISTRY}/${{ inputs.image-name }}:${TAG}"
             done
           done
