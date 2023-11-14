@@ -6,6 +6,7 @@ on:
     - main
     paths:
     - debian/**
+    - '!debian/README.md'
     - .github/workflows/image-build.yml
     - .github/workflows/debian.yml
   schedule:

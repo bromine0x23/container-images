@@ -6,6 +6,7 @@ on:
     - main
     paths:
     - fedora/**
+    - '!fedora/README.md'
     - .github/workflows/image-build.yml
     - .github/workflows/fedora.yml
   schedule:
