@@ -27,7 +27,7 @@ jobs:
       image-label-version: "${{ matrix.fedora-version }}"
       image-build-context: ./fedora/${{ matrix.fedora-version }}
       image-build-args: |
-        BASE_IMAGE=fedora:${{ matrix.fedora-version }}-slim
+        BASE_IMAGE=fedora:${{ matrix.fedora-version }}
         IS_SLIM=${{ matrix.is-slim && 'slim' || '' }}
       image-name: >-
         bromine0x23/fedora
