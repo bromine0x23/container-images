@@ -24,14 +24,10 @@ on:
         default: linux/amd64,linux/arm64
         required: false
         type: string
-      image-registries:
-        default: "docker.io ghcr.io"
-        required: false
-        type: string
       image-name:
         required: true
         type: string
-      image-tags:
+      image-tag:
         default: ''
         required: false
         type: string
@@ -50,9 +46,9 @@ jobs:
       run: |
         {
           echo 'IMAGE_TAGS<<EOF'
-          for REGISTRY in ${{ inputs.image-registries }}; do
-            for TAG in ${{ inputs.image-tags }}; do
-              echo "${REGISTRY}/${{ inputs.image-name }}:${TAG}"
+          for NAME in ${{ inputs.image-name }}; do
+            for TAG in ${{ inputs.image-tag }}; do
+              echo "${NAME}:${TAG}"
             done
           done
           echo EOF
