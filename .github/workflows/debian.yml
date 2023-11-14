@@ -1,0 +1,31 @@
+name: Debian 镜像构建
+
+on:
+  push:
+    branches:
+    - master
+  schedule:
+  - cron:  '0 0 1 * *'
+
+jobs:
+  debian:
+    uses: ./.github/workflows/image-build.yml
+    name: Debian
+    strategy:
+      matrix:
+        debian-version: ['12', '11']
+        is-slim: [false, true]
+        include:
+        - debian-latest-version: '12'
+    with:
+      image-title: Debian
+      image-version: "${{ matrix.debian-version }}"
+      image-build-context: ./debian/${{ matrix.debian-version }}
+      image-build-args: |
+        BASE_IMAGE=debian:${{ matrix.debian-version }}-slim
+        IS_SLIM=${{ matrix.is-slim && 'slim' || '' }}
+      image-name: bromine0x23/debian
+      image-tags: |
+        ${{ matrix.debian-version }}${{ matrix.is-slim && '-slim' }}
+        ${{ matrix.debian-version == matrix.debian-latest-version && (matrix.is-slim && 'slim' || 'latest') || '' }}
+    secrets: inherit
