@@ -26,7 +26,7 @@ jobs:
       image-version: "${{ matrix.debian-version }}"
       image-build-context: ./debian/${{ matrix.debian-version }}
       image-build-args: |
-        BASE_IMAGE=debian:${{ matrix.debian-version }}-slim,
+        BASE_IMAGE=debian:${{ matrix.debian-version }}-slim
         IS_SLIM=${{ matrix.is-slim && 'slim' || '' }}
       image-name: bromine0x23/debian
       image-tags: >-
