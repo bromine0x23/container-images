@@ -3,16 +3,23 @@ name: 镜像构建模版
 on:
   workflow_call:
     inputs:
-      image-authors:
-        default: 'Bromine0x23 <bromine0x23@gmail.com>'
+      image-label-authors:
         required: false
         type: string
-      image-title:
+        default: 'Bromine0x23 <bromine0x23@gmail.com>'
+      image-label-title:
         required: true
         type: string
-      image-version:
+      image-label-description:
+        required: false
+        type: string
+      image-label-version:
         required: true
         type: string
+      image-label-licenses:
+        required: false
+        type: string
+        default: WTFPL
       image-build-context:
         default: '.'
         required: false
@@ -21,16 +28,16 @@ on:
         required: false
         type: string
       image-build-platforms:
-        default: linux/amd64,linux/arm64
         required: false
         type: string
+        default: linux/amd64,linux/arm64
       image-name:
         required: true
         type: string
       image-tag:
-        default: ''
         required: false
         type: string
+        default: ''
     secrets:
       DOCKERHUB_USERNAME:
         required: true
@@ -53,6 +60,7 @@ jobs:
           done
           echo EOF
         } >> "$GITHUB_ENV"
+        echo "IMAGE_LABEL_CREATED=$(date --rfc-3339=seconds)" >> $GITHUB_ENV
     - id: checkout
       name: 检出代码
       uses: actions/checkout@v4
@@ -82,9 +90,15 @@ jobs:
         context: ${{ inputs.image-build-context }}
         build-args: ${{ inputs.image-build-args }}
         labels: |
-          org.opencontainers.image.authors="${{ inputs.image-authors }}"
-          org.opencontainers.image.title="${{   inputs.image-title   }}"
-          org.opencontainers.image.version="${{ inputs.image-version }}"
+          org.opencontainers.image.created="${{ env.IMAGE_LABEL_CREATED }}"
+          org.opencontainers.image.authors="${{ inputs.image-label-authors }}"
+          org.opencontainers.image.title="${{ inputs.image-label-title }}"
+          org.opencontainers.image.description="${{ inputs.image-label-description }}"
+          org.opencontainers.image.version="${{ inputs.image-label-version }}"
+          org.opencontainers.image.revision="${{ github.sha }}"
+          org.opencontainers.image.url="${{ github.server_url }}/${{ github.repository }}"
+          org.opencontainers.image.source="${{ github.server_url }}/${{ github.repository }}"
+          org.opencontainers.image.licenses="${{ github.server_url }}/${{ github.repository }}"
         platforms: ${{ inputs.image-build-platforms }}
         push: true
         tags: ${{ env.IMAGE_TAGS }}

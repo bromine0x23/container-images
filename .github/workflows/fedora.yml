@@ -1,0 +1,38 @@
+name: Fedora 镜像构建
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - fedora/**
+    - .github/workflows/image-build.yml
+    - .github/workflows/fedora.yml
+  schedule:
+  - cron:  '0 8 1 * *'
+
+jobs:
+  fedora:
+    uses: ./.github/workflows/image-build.yml
+    name: Fedora
+    strategy:
+      matrix:
+        fedora-version: ['39', '38']
+        is-slim: [false, true]
+        include:
+        - fedora-latest-version: '39'
+    with:
+      image-label-title: Fedora
+      image-label-description: Fedora 系统基础镜像
+      image-label-version: "${{ matrix.fedora-version }}"
+      image-build-context: ./fedora/${{ matrix.fedora-version }}
+      image-build-args: |
+        BASE_IMAGE=fedora:${{ matrix.fedora-version }}-slim
+        IS_SLIM=${{ matrix.is-slim && 'slim' || '' }}
+      image-name: >-
+        bromine0x23/fedora
+        ghcr.io/bromine0x23/fedora
+      image-tag: >-
+        ${{ matrix.fedora-version }}${{ matrix.is-slim && '-slim' || '' }}
+        ${{ matrix.fedora-version == matrix.fedora-latest-version && (matrix.is-slim && 'slim' || 'latest') || '' }}
+    secrets: inherit

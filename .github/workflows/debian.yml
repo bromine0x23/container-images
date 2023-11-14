@@ -9,7 +9,7 @@ on:
     - .github/workflows/image-build.yml
     - .github/workflows/debian.yml
   schedule:
-  - cron:  '0 0 1 * *'
+  - cron:  '0 8 1 * *'
 
 jobs:
   debian:
@@ -22,8 +22,9 @@ jobs:
         include:
         - debian-latest-version: '12'
     with:
-      image-title: Debian
-      image-version: "${{ matrix.debian-version }}"
+      image-label-title: Debian
+      image-label-description: Debian 系统基础镜像
+      image-label-version: "${{ matrix.debian-version }}"
       image-build-context: ./debian/${{ matrix.debian-version }}
       image-build-args: |
         BASE_IMAGE=debian:${{ matrix.debian-version }}-slim
