@@ -1,5 +1,5 @@
 # OracleLinux Container Image
-[![OracleLinux 镜像](https://github.com/bromine0x23/container-images/actions/workflows/oraclelinux.yml/badge.svg)](https://github.com/bromine0x23/container-images/actions/workflows/oraclelinux.yml)
+[![OracleLinux](https://github.com/bromine0x23/container-images/actions/workflows/oraclelinux.yml/badge.svg)](https://github.com/bromine0x23/container-images/actions/workflows/oraclelinux.yml)
 
 基于[官方 OracleLinux 镜像](https://hub.docker.com/_/oraclelinux)：
 
