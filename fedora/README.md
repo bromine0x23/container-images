@@ -1,5 +1,5 @@
 # Fedora Container Image
-[![Fedora 镜像构建](https://github.com/bromine0x23/container-images/actions/workflows/fedora.yml/badge.svg)](https://github.com/bromine0x23/container-images/actions/workflows/fedora.yml)
+[![Fedora 镜像](https://github.com/bromine0x23/container-images/actions/workflows/fedora.yml/badge.svg)](https://github.com/bromine0x23/container-images/actions/workflows/fedora.yml)
 
 基于[官方 Fedora 镜像](https://hub.docker.com/_/fedora)：
 

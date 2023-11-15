@@ -2,3 +2,4 @@
 
 * [Debian](debian)
 * [Fedora](fedora)
+* [OracleLinux](oraclelinux)

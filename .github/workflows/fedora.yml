@@ -1,4 +1,4 @@
-name: Fedora 镜像构建
+name: Fedora 镜像
 
 on:
   push:
@@ -18,10 +18,10 @@ jobs:
     name: Fedora
     strategy:
       matrix:
-        fedora-version: ['39', '38']
+        fedora-version: [39, 38]
         is-slim: [false, true]
         include:
-        - fedora-latest-version: '39'
+        - fedora-latest-version: 39
     with:
       image-label-title: Fedora
       image-label-description: Fedora 系统基础镜像

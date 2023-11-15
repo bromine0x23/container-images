@@ -1,5 +1,5 @@
 # Debian Container Image
-[![Debian 镜像构建](https://github.com/bromine0x23/container-images/actions/workflows/debian.yml/badge.svg)](https://github.com/bromine0x23/container-images/actions/workflows/debian.yml)
+[![Debian 镜像](https://github.com/bromine0x23/container-images/actions/workflows/debian.yml/badge.svg)](https://github.com/bromine0x23/container-images/actions/workflows/debian.yml)
 
 基于[官方 Debian 镜像](https://hub.docker.com/_/debian)：
 

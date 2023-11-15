@@ -1,4 +1,4 @@
-name: Debian 镜像构建
+name: Debian 镜像
 
 on:
   push:
@@ -18,10 +18,10 @@ jobs:
     name: Debian
     strategy:
       matrix:
-        debian-version: ['12', '11']
+        debian-version: [12, 11]
         is-slim: [false, true]
         include:
-        - debian-latest-version: '12'
+        - debian-latest-version: 12
     with:
       image-label-title: Debian
       image-label-description: Debian 系统基础镜像
