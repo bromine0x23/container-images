@@ -47,7 +47,7 @@ RUN set -o errexit -o nounset -o xtrace \
         openssl-libs \
         python-libs \
  && yum -y install --setopt=tsflags=nodocs \
-        oracle-epel-release \
+        oracle-epel-release-el7 \
 # 安装常用工具
  && if [ "${IS_SLIM}" == '' ]; then \
        yum -y install --setopt=tsflags=nodocs \
