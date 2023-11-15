@@ -32,6 +32,8 @@ RUN set -o errexit -o nounset -o xtrace \
  && dnf -y update \
         ca-certificates \
         dnf \
+ && dnf -y install --best --nodocs --setopt='tsflags=nodocs' --setopt='install_weak_deps=False' \
+        oracle-epel-release \
 # 安装常用工具
  && if [ "${IS_SLIM}" == '' ]; then \
        dnf -y install --best --nodocs --setopt='tsflags=nodocs' \
