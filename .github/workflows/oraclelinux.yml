@@ -30,7 +30,7 @@ jobs:
       image-label-title: OracleLinux
       image-label-description: OracleLinux 系统基础镜像
       image-label-version: "${{ matrix.oraclelinux-version }}"
-      image-build-context: ./debian/${{ matrix.oraclelinux-version }}
+      image-build-context: ./oraclelinux/${{ matrix.oraclelinux-version }}
       image-build-args: |
         BASE_IMAGE=oraclelinux:${{ matrix.oraclelinux-version }}-slim
         IS_SLIM=${{ matrix.is-slim && 'slim' || '' }}
