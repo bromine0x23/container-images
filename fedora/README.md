@@ -33,7 +33,7 @@
     + zlib
 
 ## 标签
-* [39, latest](39/Dockerfile): Fedora 39
-* [39-slim, slim](39/Dockerfile): Fedora 39 精简版
-* [38](38/Dockerfile): Fedora 38
-* [38-slim](38/Dockerfile): Fedora 38 精简版
+* [`39`, `latest`](39/Dockerfile): Fedora 39
+* [`39-slim`, `slim`](39/Dockerfile): Fedora 39 精简版
+* [`38`](38/Dockerfile): Fedora 38
+* [`38-slim`](38/Dockerfile): Fedora 38 精简版

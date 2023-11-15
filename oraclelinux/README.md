@@ -12,6 +12,7 @@
     + bind-utils
     + binutils
     + bzip2
+    + dnf
     + dnf-plugins-core
     + gettext
     + htop
@@ -29,12 +30,13 @@
     + vim
     + wget
     + xz
+    + yum
     + zlib
 
 ## 标签
-* [9, latest](9/Dockerfile): OracleLinux 9
-* [9-slim, slim](9/Dockerfile): OracleLinux 9 精简版
-* [8](8/Dockerfile): OracleLinux 8
-* [8-slim](8/Dockerfile): OracleLinux 8 精简版
-* [7](7/Dockerfile): OracleLinux 7
-* [7-slim](7/Dockerfile): OracleLinux 7 精简版
+* [`9`, `latest`](9/Dockerfile): OracleLinux 9
+* [`9-slim`, `slim`](9/Dockerfile): OracleLinux 9 精简版
+* [`8`](8/Dockerfile): OracleLinux 8
+* [`8-slim`](8/Dockerfile): OracleLinux 8 精简版
+* [`7`](7/Dockerfile): OracleLinux 7
+* [`7-slim`](7/Dockerfile): OracleLinux 7 精简版
