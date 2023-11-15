@@ -1,4 +1,4 @@
-name: Fedora 镜像
+name: Fedora
 
 on:
   push:
