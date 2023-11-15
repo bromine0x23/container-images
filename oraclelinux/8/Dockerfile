@@ -41,7 +41,7 @@ RUN set -o errexit -o nounset -o xtrace \
         oracle-epel-release \
 # 安装常用工具
  && if [ "${IS_SLIM}" == '' ]; then \
-       dnf -y --best install --nodocs --setopt='tsflags=nodocs' \
+       dnf -y install --best --nodocs --setopt='tsflags=nodocs' --setopt='install_weak_deps=False' \
            bash \
            bash-completion \
            bind-utils \

@@ -46,7 +46,7 @@ RUN set -o errexit -o nounset -o xtrace \
         yum \
         openssl-libs \
         python-libs \
- && dnf -y install --best --nodocs --setopt='tsflags=nodocs' --setopt='install_weak_deps=False' \
+ && yum -y install --setopt=tsflags=nodocs \
         oracle-epel-release \
 # 安装常用工具
  && if [ "${IS_SLIM}" == '' ]; then \
