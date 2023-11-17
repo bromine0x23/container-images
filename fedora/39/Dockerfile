@@ -19,8 +19,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3039,DL3041
 RUN set -o errexit -o nounset -o xtrace \
 # 禁用 fedora-cisco-openh264
- && sed --in-place "s|enabled=1|enabled=0|"  /etc/yum.repos.d/fedora-cisco-openh264.repo \
- && dnf config-manager --set-disabled fedora-cisco-openh264 \
+ && sed --in-place "s|enabled=1|enabled=0|" /etc/yum.repos.d/fedora-cisco-openh264.repo \
 # 设置时区
  && ln -sf /usr/share/zoneinfo/${LOCALE_TIMEZONE} /etc/localtime \
 # 设置语言环境
