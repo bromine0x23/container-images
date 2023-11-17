@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=bromine0x23/fedora
+ARG BASE_IMAGE=bromine0x23/oraclelinux
 
 # hadolint ignore=DL3006
 FROM $BASE_IMAGE

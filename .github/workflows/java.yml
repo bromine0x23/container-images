@@ -13,24 +13,48 @@ on:
   - cron:  '0 8 3 * *'
 
 jobs:
+  wait-oraclelinux:
+    name: 等待上游镜像完成
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wait to succeed
+      uses: lewagon/wait-on-check-action@v1.3.1
+      with:
+        ref: ${{ github.ref }}
+        check-name: OracleLinux
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        wait-interval: 30
+  wait-debian:
+    name: 等待上游镜像完成
+    runs-on: ubuntu-latest
+    steps:
+    - name: Wait to succeed
+      uses: lewagon/wait-on-check-action@v1.3.1
+      with:
+        ref: ${{ github.ref }}
+        check-name: Debian
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        wait-interval: 30
+
   java:
     uses: ./.github/workflows/image-build.yml
     name: Java
+    needs: [wait-oraclelinux, wait-debian]
     strategy:
       matrix:
         version: [21]
         variant: [jdk, jre]
-        os: [debian, fedora]
+        os: [oraclelinux, debian]
         include:
         - distribution: temurin
           version-latest: 21
           version-lts: 21
           variant-default: jdk
-          os-default: fedora
+          os-default: oraclelinux
         - os: debian
           os-version: 12
-        - os: fedora
-          os-version: 38
+        - os: oraclelinux
+          os-version: 8
     with:
       image-label-title: Java
       image-label-description: Java 工具镜像 (基于 Temurin)
