@@ -14,27 +14,29 @@ on:
 
 jobs:
   wait-oraclelinux:
-    name: 等待上游镜像完成
+    name: 等待上游镜像完成 - OracleLinux
     runs-on: ubuntu-latest
     steps:
-    - name: Wait to succeed
+    - uses: actions/checkout@v4
+    - name: Wait to succeed - OracleLinux
       uses: lewagon/wait-on-check-action@v1.3.1
       with:
         ref: ${{ github.ref }}
         check-name: OracleLinux
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        wait-interval: 900
+        wait-interval: 10
   wait-debian:
-    name: 等待上游镜像完成
+    name: 等待上游镜像完成 - Debian
     runs-on: ubuntu-latest
     steps:
-    - name: Wait to succeed
+    - uses: actions/checkout@v4
+    - name: Wait to succeed - Debian
       uses: lewagon/wait-on-check-action@v1.3.1
       with:
         ref: ${{ github.ref }}
         check-name: Debian
         repo-token: ${{ secrets.GITHUB_TOKEN }}
-        wait-interval: 900
+        wait-interval: 10
 
   java:
     uses: ./.github/workflows/image-build.yml
