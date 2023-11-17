@@ -33,7 +33,7 @@ on:
       image-build-platforms:
         required: false
         type: string
-        default: linux/amd64
+        default: linux/amd64,linux/arm64/v8
       image-name:
         required: true
         type: string
