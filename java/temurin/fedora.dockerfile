@@ -11,7 +11,7 @@ ENV JAVA_HOME="/usr/lib/jvm/${JAVA_HOME_DIR}"
 ENV PATH="$JAVA_HOME/bin:$PATH"
 
 # hadolint ignore=DL3041
-RUN set -o errexit -o nounset -o xtrace \
+RUN set -o errexit -o nounset -o xtrace; \
     { \
         echo '[Adoptium]'; \
         echo 'name=Adoptium'; \

@@ -12,7 +12,7 @@ ENV JAVA_HOME="/usr/lib/jvm/${JAVA_HOME_DIR}-${TARGETARCH}"
 ENV PATH="$JAVA_HOME/bin:$PATH"
 
 # hadolint ignore=DL3008,DL4006
-RUN set -o errexit -o nounset -o xtrace \
+RUN set -o errexit -o nounset -o xtrace; \
     wget -O - https://packages.adoptium.net/artifactory/api/gpg/key/public | tee /etc/apt/keyrings/adoptium.asc; \
     echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list; \
     mkdir -p /usr/share/man/man1/; \
