@@ -3,6 +3,7 @@ ARG BASE_IMAGE=bromine0x23/debian
 # hadolint ignore=DL3006
 FROM $BASE_IMAGE
 
+ARG TARGETARCH
 ARG JAVA_HOME_DIR
 ARG JAVA_PACKAGE
 ARG JAVA_CACERTS=/lib/security/cacerts
