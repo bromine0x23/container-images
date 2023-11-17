@@ -1,0 +1,52 @@
+name: Java
+
+on:
+  push:
+    branches:
+    - main
+    paths:
+    - java/**
+    - '!java/README.md'
+    - .github/workflows/image-build.yml
+    - .github/workflows/java.yml
+  schedule:
+  - cron:  '0 8 3 * *'
+
+jobs:
+  java:
+    uses: ./.github/workflows/image-build.yml
+    name: Java
+    strategy:
+      matrix:
+        version: [21]
+        variant: [jdk, jre]
+        os: [debian, fedora]
+        include:
+        - distribution: temurin
+          version-latest: 21
+          version-lts: 21
+          variant-default: jdk
+          os-default: fedora
+        - os: debian
+          os-version: 12
+        - os: fedora
+          os-version: 38
+    with:
+      image-label-title: Java
+      image-label-description: Java 工具镜像 (基于 Temurin)
+      image-label-version: "${{ matrix.version }}"
+      image-build-context: ./java/${{ matrix.distribution }}
+      image-build-dockerfile: ./java/${{ matrix.distribution }}/${{ matrix.os }}.dockerfile
+      image-build-args: |
+        BASE_IMAGE=bromine0x23/${{ matrix.os }}:${{ matrix.os-version }}
+        JAVA_HOME_DIR=${{ format('temurin-{0}-{1}', matrix.version, matrix.variant) }}
+        JAVA_PACKAGE=${{ format('temurin-{0}-{1}', matrix.version, matrix.variant) }}
+      image-name: >-
+        bromine0x23/java
+        ghcr.io/bromine0x23/java
+      image-tag: >-
+        ${{                                                                                 format('{0}-{1}-{2}', matrix.version, matrix.variant, matrix.os)       }}
+        ${{ (                                            matrix.os == matrix.os-default) && format('{0}-{1}'    , matrix.version, matrix.variant           ) || '' }}
+        ${{ (matrix.variant == matrix.variant-default                                  ) && format('{0}-{1}'    , matrix.version,                 matrix.os) || '' }}
+        ${{ (matrix.variant == matrix.variant-default && matrix.os == matrix.os-default) && format('{0}'        , matrix.version                           ) || '' }}
+    secrets: inherit

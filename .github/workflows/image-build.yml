@@ -24,6 +24,9 @@ on:
         default: '.'
         required: false
         type: string
+      image-build-dockerfile:
+        required: false
+        type: string
       image-build-args:
         required: false
         type: string
@@ -88,6 +91,7 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: ${{ inputs.image-build-context }}
+        file: ${{ inputs.image-build-dockerfile || format('{0}/Dockerfile', inputs.image-build-context) }}
         build-args: ${{ inputs.image-build-args }}
         labels: |
           org.opencontainers.image.created="${{ env.IMAGE_LABEL_CREATED }}"
